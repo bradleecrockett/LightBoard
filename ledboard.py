@@ -35,6 +35,13 @@ def light(x, y, color):
     pixels[coord] = color # sets the pixel
     return 
 
+
+def rect(x, y, width, height, color):
+    for px in range(x, x + width):
+        for py in range(y + height):
+            if(px in range(29) and py in range(17)):
+                light(px, py, color)
+
 def makeborder (color): 
     # makes a border around the borders in any color you want
     # top, middle, bottom row
@@ -78,9 +85,6 @@ def main():
         sleep(.01) # wait time between each time the board shifts
         # runs over and over again and NEVER EVER STOPS
 
-        # makeborder(BLUE)
-        
-        # call your function below
         
 
 
