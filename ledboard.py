@@ -1,11 +1,11 @@
-import ledboard
+import board
 import neopixel
 import random
 from time import sleep
 
 pixel_num = 493 # number of pixels on the board
 
-pixels = neopixel.NeoPixel(ledboard.D18, pixel_num, brightness = .75, auto_write = False)
+pixels = neopixel.NeoPixel(board.D18, pixel_num, brightness = .75, auto_write = False)
 
 # Values for colors are in GRB (for some reason)
 GREEN = ((255, 0, 0))

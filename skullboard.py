@@ -1,11 +1,16 @@
-import skullboard
+
+github.com/bradleecrockett/LightBoard
+
+import board
 import neopixel
+from ledboard import *
+
 import random
 from time import sleep
 
 pixel_num = 493 # number of pixels on the board
 
-pixels = neopixel.NeoPixel(skullboard.D18, pixel_num, brightness = .75, auto_write = False)
+pixels = neopixel.NeoPixel(board.D18, pixel_num, brightness = .75, auto_write = False)
 
 # Values for colors are in GRB (for some reason)
 GREEN = ((255, 0, 0))
@@ -54,7 +59,7 @@ def clear(startX, endX, startY, endY):
                 light(i + startX, h + startY, OFF)
 
 def rect(x, y, width, height, color):
-    for px in range(x, x+width):
+    for px in range(x, x + width):
         for py in range(y + height):
             if(px in range(29) and py in range(17)):
                 light(px, py, color)
@@ -62,16 +67,17 @@ def rect(x, y, width, height, color):
 # Write a function to draw an image, design, or pattern
 def skull(color):
     pixels.fill(OFF)
-    rect(9,4,color)
-    rect(11,3,9,1)
-    rect(12,2,7,1)
-    rect(8,6,1,4)
-    rect(20,6,1,4)
-    rect(10,12,9,1)
+    rect(8,6,1,4, color)
+    rect(9,4,1,6,color)
+    rect(10,12,9,1,color)
+    rect(11,3,9,1,color)
+    rect(12,2,7,1,color)
+    rect(20,6,1,4,color)
+
     for i in range(4):
-        rect(11+i*2,13,1,2)
+        rect(11+i*2,13,1,2,color)
     for i in range(2):
-        rect(11+i*5,6,2,2)
+        rect(11+i*5,6,2,2,color)
     light(13,9,(0,0,0))
     light(15,9,(0,0,0))
     
