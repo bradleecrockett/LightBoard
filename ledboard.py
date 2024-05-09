@@ -1,11 +1,13 @@
-import ledboard
+
+import board
 import neopixel
 import random
 from time import sleep
 
 pixel_num = 493 # number of pixels on the board
-
-pixels = neopixel.NeoPixel(ledboard.D18, pixel_num, brightness = .75, auto_write = False)
+HEIGHT = 17
+WIDTH = 29
+pixels = neopixel.NeoPixel(board.D18, pixel_num, brightness = .90, auto_write = False)
 
 # Values for colors are in GRB (for some reason)
 GREEN = ((255, 0, 0))
@@ -58,15 +60,27 @@ def clear(startX, endX, startY, endY):
 
  
 
-#THEALPHABET = [LD["A"], LD["B"], LD["C"], LD["D"], LD["E"], LD["F"], LD["G"], LD["H"], LD["I"], LD["J"], LD["K"], LD["L"], LD["M"], LD["N"], LD["O"], LD["P"], LD["Q"], LD["R"], LD["S"], LD["T"], LD["U"], LD["V"], LD["W"], LD["X"], LD["Y"], LD["Z"], LD["0"], LD["1"], LD["2"], LD["3"], LD["4"], LD["5"], LD["6"], LD["7"], LD["8"], LD["9"]]
+
 def main():
-    while True: 
+    clear(0,WIDTH-1, 0, HEIGHT-1)
+    colors = [RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA]
+    
+    while True:
+        color = 0
+        
+        for col in range(HEIGHT):
+            for row in range(WIDTH):
+#                 print(row,col)
+                light(row, col, random.choice(colors))
+#                 pixels.show()
+                
+            
         pixels.show() # update pixels
-        sleep(.05) # wait time between each time the board shifts
+        sleep(.01) # wait time between each time the board shifts
         # runs over and over again and NEVER EVER STOPS
 
-        makeborder(BLUE)
-
+        # makeborder(BLUE)
+        
         # call your function below
         
 
