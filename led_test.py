@@ -1,5 +1,5 @@
 '''
-ws2812 leds 5Volt
+ws2812 leds 12Volt 
 Data is pin 12 (6th from corner) aka GPIO18
 Ground is pin 14 (7th from corner) many more GNDs available
  

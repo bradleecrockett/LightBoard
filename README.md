@@ -1,17 +1,19 @@
 # LightBoard
 
 The Light Board is run by a microcomputer called a Raspberry Pi.
-
-
-### Using the Light Board
-Lightboard & Raspberry Pi Resources / Notes
-
-Login UserName: pi
-Login Password: techstudents
-
 Set the Date and Time via terminal (needed to connect to internet).
 
 `sudo date -s "2023-11-28 11:06:00"`
+
+
+### Using the Light Board
+
+* Our lightstrip is a ws2812 leds 12Volt (power) Power must be supplied from a large power supply. Do not attempt to poser the LED Board without the powersupply from the Raspberry Pi.
+* Data is pin 12 (6th from corner) aka GPIO18
+* Ground is pin 20 (7th from corner) many more GNDs available (6, 9, 14, 20, 25, 30, 34, 39). This needs to share a ground with the power supply as well.
+ ![GPPI DIagram](GPIO.png)
+    
+
 
 Basic Setup:
 https://youtu.be/KJupt2LIjp4 
