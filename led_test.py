@@ -18,7 +18,7 @@ apple_value = 350
 
 pixels = neopixel.NeoPixel(board.D18, pixel_num, brightness = .75, auto_write = False)
 
-# Values for colors are in GRB (for some reason)
+# Values for colors are in GRB instead of RGB order
 GREEN = ((255, 0, 0))
 RED = ((0, 255, 0))
 BLUE = ((0, 0, 255))
@@ -409,52 +409,45 @@ def scroll(str): #turns a string into the pixel letters in the dictionary in an 
     out = []
     for l in str.upper():
         out.append(LD[l])
-    return out #not useless
+    return out 
 
-    
+def snake():
+    '''its a snake game that runs automatically ctrl+C to quit'''
+    on = True
+    while on:
+        for f in range(98):
+                pixels[f*5] = (100, 200, 0)
+        for i in range (pixel_num):
+            pixels[i] = (255, 0, 0)
+            pixels.show()
+            sleep(.005)
+            pixels[(i - snake_length+pixel_num)%pixel_num] = (0, 0, 0)
+            if (i == apple_value):
+                snake_length = snake_length + 1
+                apple_here = False
+            if (apple_here == False):
+                good_choice = False
+                while(not good_choice):
+                    choice = random.randint(0, pixel_num-1)
+                    if (choice < i - snake_length or choice > i):
+                        pixels[choice] = (0, 255, 0)
+                        apple_here = True
+                        apple_value = choice
+                        good_choice = True
 
-makeBoarder(BLUE) #dododododod inspector boarder dododoododo
+def main():
+    makeBoarder(BLUE) 
 
-#THEALPHABET = [LD["A"], LD["B"], LD["C"], LD["D"], LD["E"], LD["F"], LD["G"], LD["H"], LD["I"], LD["J"], LD["K"], LD["L"], LD["M"], LD["N"], LD["O"], LD["P"], LD["Q"], LD["R"], LD["S"], LD["T"], LD["U"], LD["V"], LD["W"], LD["X"], LD["Y"], LD["Z"], LD["0"], LD["1"], LD["2"], LD["3"], LD["4"], LD["5"], LD["6"], LD["7"], LD["8"], LD["9"]]
-num = 0
-while True: #runs over and over again and NEVER EVER STOPS\
-    if (num % 2 == 0):
-        moveLetterX(28, 1, 5, 7, scroll("Welcome to the RHS"), RED, scroll("     CTE Capstone Showcase"), GREEN)
-          
-    else:
-        moveLetterX(28, 1, 5, 7, scroll("PLTW BioMedical & Engineering"), BLUE, scroll("CTE Computer Science"), GREEN)
+    #THEALPHABET = [LD["A"], LD["B"], LD["C"], LD["D"], LD["E"], LD["F"], LD["G"], LD["H"], LD["I"], LD["J"], LD["K"], LD["L"], LD["M"], LD["N"], LD["O"], LD["P"], LD["Q"], LD["R"], LD["S"], LD["T"], LD["U"], LD["V"], LD["W"], LD["X"], LD["Y"], LD["Z"], LD["0"], LD["1"], LD["2"], LD["3"], LD["4"], LD["5"], LD["6"], LD["7"], LD["8"], LD["9"]]
+    num = 0
+    while True: #runs over and over again and NEVER EVER STOPS\
+        if (num % 2 == 0):
+            moveLetterX(28, 1, 5, 7, scroll("Welcome to the RHS"), RED, scroll("     CTE Capstone Showcase"), GREEN)
+            
+        else:
+            moveLetterX(28, 1, 5, 7, scroll("PLTW BioMedical & Engineering"), BLUE, scroll("CTE Computer Science"), GREEN)
 
-    
-#moveLetterX(1, 1, 5, 7, LD["O"], RED)
-'''
-#snake
-#its a snake game that runs automaticallyu
-#i made it in like 30 minutes but its important trust dont delete it
-#not telling you how it works because i will carry the secret to my grave
-#(its not that hard to figure out)
-while True:
-    for f in range(98):
-            pixels[f*5] = (100, 200, 0)
-    for i in range (pixel_num):
-        pixels[i] = (255, 0, 0)
-        pixels.show()
-        sleep(.005)
-        pixels[(i - snake_length+pixel_num)%pixel_num] = (0, 0, 0)
-        if (i == apple_value):
-            snake_length = snake_length + 1
-            apple_here = False
-        if (apple_here == False):
-            good_choice = False
-            while(not good_choice):
-                choice = random.randint(0, pixel_num-1)
-                if (choice < i - snake_length or choice > i):
-                    pixels[choice] = (0, 255, 0)
-                    apple_here = True
-                    apple_value = choice
-                    good_choice = True
-        
-'''
-
-
+if __name__ == "__main__":
+    main()
     
 
